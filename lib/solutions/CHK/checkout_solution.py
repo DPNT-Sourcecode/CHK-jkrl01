@@ -5,6 +5,11 @@ import re
 def checkout(skus: str) -> int:
     """Takes a string of SKUs delimited by comma (,). Multibuys are prefixed
     with a number.
+
+    examples
+    --------
+    checkout('4A') --> 180
+    checkout('3A, B') --> 160
     """
     sku_price_map = {
             'A': 50,
@@ -75,5 +80,6 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     remainder = quantity % multi_buy[0]
     print(price, multi_buy, remainder, number_of_multibuys)
     return price * remainder + (number_of_multibuys * multi_buy[1])
+
 
 
