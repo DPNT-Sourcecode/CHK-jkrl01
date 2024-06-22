@@ -1,4 +1,4 @@
-
+import re
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -37,7 +37,7 @@ def checkout(skus: str) -> int:
 
     return total_price
 
-def sku_split(sku: str) -> (str, int):
+def sku_split(sku: str) -> tuple[str, int]:
     """Takes a SKU string, returns a tuple of the SKU and quantity.
 
     examples
@@ -46,6 +46,16 @@ def sku_split(sku: str) -> (str, int):
     3A  -> (A, 3)
     30A -> (A, 30)
     """
+
+    quantity_re = re.compile(r'^\d+')
+    quantity_matched = quantity_re.match(sku)
+    if quantity_matched is None:
+        return (sku, 1)
+    
+
+    quantity = int(quantity_matched.group())
+    sku_name = sku[quantity_matched.start() + 1:]
+    return (sku_name, quantity)
 
 
 def checkout_compute_multibuy(sku: str, sku_price_map: dict, sku_multibuy_map: dict) -> int:
@@ -59,3 +69,4 @@ def checkout_compute_multibuy(sku: str, sku_price_map: dict, sku_multibuy_map: d
     4A -> 3A + A -> 130 + 50 = 180
     """
     return int(sku[0]) * sku_price_map[sku[1]]
+
