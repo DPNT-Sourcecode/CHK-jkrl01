@@ -20,8 +20,8 @@ class TestHello():
         """This is a type error, but demenstrates type coercion should
         untype-checked code is run.
         """
-        # pyright: reportArgumentType=false
-        assert hello_solution.hello(5) == 'Hello, 5!'
+        # deliberate type error
+        assert hello_solution.hello(5) == 'Hello, 5!' # type: ignore
 
     def test_hello__fullname(self):
         assert hello_solution.hello('Danny Stewart') == 'Hello, Danny Stewart!'
@@ -31,4 +31,5 @@ class TestHello():
 
     def test_hello__clientspec_2(self):
         assert hello_solution.hello("Mr. X") == 'Hello, Mr. X!'
+
 
