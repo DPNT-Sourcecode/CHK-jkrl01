@@ -9,7 +9,7 @@ class TestCheckout():
         assert checkout_solution.checkout('3A') == 130
 
     def test_checkout__single_sku_multibuy_nooffer(self):
-        assert checkout_solution.checkout('2A') == 130
+        assert checkout_solution.checkout('2A') == 100
 
     def test_checkout__single_sku_multibuy_mixed(self):
         """Multi-buy offer can apply to a subset of quanitities
@@ -29,4 +29,5 @@ class TestCheckout():
 
     def test_checkout__illegal_1(self):
         assert checkout_solution.checkout('this_is_illegal') == -1
+
 
