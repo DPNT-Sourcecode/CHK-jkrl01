@@ -1,6 +1,10 @@
-from lib.solutions.SUM import sum_solution
+from lib.solutions.HLO import hello_solution
 
 
-class TestSum():
-    def test_sum(self):
-        assert sum_solution.compute(1, 2) == 3
+class TestHello():
+    def test_hello(self):
+        assert hello_solution.hello('danny') == 'Hello, danny!'
+
+    def test_hello__zero_length(self):
+        assert hello_solution.hello('') == 'Hello, !'
+
