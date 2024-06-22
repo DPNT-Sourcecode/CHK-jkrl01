@@ -27,6 +27,8 @@ def checkout(skus: str) -> int:
     total_price = 0
 
     sku_list = skus.split(',') # assume comma delimiter
+    sku_list = [sku.strip() for sku in sku_list] # remove whitespace
+
 
     for sku in sku_list:
         if sku in sku_price_map:
@@ -87,6 +89,7 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     total_singleton_price = price * remainder
 
     return total_singleton_price + total_multi_buy_price 
+
 
 
 
