@@ -43,6 +43,9 @@ class TestCheckout():
     def test_checkout__illegal_1(self):
         assert checkout_solution.checkout('this_is_illegal') == -1
 
+    def test_checkout__illegal_2(self):
+        assert checkout_solution.checkout('A,this_is_illegal') == -1
+
     def test_sku_split__no_quantity(self):
         assert checkout_solution.sku_split('A') == ('A', 1)
 
@@ -57,6 +60,7 @@ class TestCheckout():
 
     def test_sku_split__multichar_sku(self):
         assert checkout_solution.sku_split('100ABDF') == ('ABDF', 100)
+
 
 
 
