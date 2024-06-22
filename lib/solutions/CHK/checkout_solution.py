@@ -15,8 +15,8 @@ def checkout(skus: str) -> int:
 
     # exact data inputs are ambiguous
     sku_multibuy_map = {
-            'A': {3: 130},
-            'B': {2: 45},
+            'A': (3, 130),
+            'B': (2, 45),
             }
 
     total_price = 0
@@ -70,6 +70,7 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     4A -> 3A + A -> 130 + 50 = 180
     """
     return int(sku[0]) * sku_price_map[sku[1]]
+
 
 
 
