@@ -15,11 +15,12 @@ class TestCheckout():
         assert checkout_solution.checkout('A,B') == 80
 
     def test_checkout__many_sku_multibuy(self):
-        """Assume Delimiter is comma"""
+        """Multibuy syntax is ambiguous. Assume <number><sku>"""
         assert checkout_solution.checkout('3A,B') == 160
 
     def test_checkout__illegal_1(self):
         assert checkout_solution.checkout('this_is_illegal') == -1
+
 
 
 

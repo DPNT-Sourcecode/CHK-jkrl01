@@ -10,5 +10,9 @@ def checkout(skus):
             'D': 15,
 
             }
-    raise NotImplementedError()
+
+    sku_list = skus.split(',') # assume comma delimiter
+
+    return sku_price_map[skus]
+
 
