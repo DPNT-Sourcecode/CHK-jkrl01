@@ -35,6 +35,3 @@ class TestCheckout():
 
     def test_checkout__illegal_1(self):
         assert checkout_solution.checkout('this_is_illegal') == -1
-
-
-
