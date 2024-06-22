@@ -75,11 +75,19 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     4A -> 3A + A -> 130 + 50 = 180
     """
     price = sku_price_map[sku]
-    multi_buy = sku_multibuy_map[sku]
-    number_of_multibuys = quantity // multi_buy[0]
-    remainder = quantity % multi_buy[0]
-    print(price, multi_buy, remainder, number_of_multibuys)
-    return price * remainder + (number_of_multibuys * multi_buy[1])
+    if sku in sku_multibuy_map:
+        multi_buy = sku_multibuy_map[sku]
+        number_of_multibuys = quantity // multi_buy[0]
+        total_multi_buy_price = (number_of_multibuys * multi_buy[1])
+        remainder = quantity % multi_buy[0]
+    else:
+        remainder = quantity
+        total_multi_buy_price = 0
+
+    total_singleton_price = price * remainder
+
+    return total_singleton_price + total_multi_buy_price 
+
 
 
 
