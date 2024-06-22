@@ -50,5 +50,3 @@ class TestCheckout():
 
     def test_sku_split__multichar_sku(self):
         assert checkout_solution.sku_split('100ABDF') == ('ABDF', 100)
-
-
