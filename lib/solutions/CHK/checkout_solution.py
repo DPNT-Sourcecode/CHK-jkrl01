@@ -31,12 +31,9 @@ def checkout(skus: str) -> int:
             continue
 
         sku_name, quantity = sku_split(sku)
-        if not sku_name in sku_price_map:
-            return -1
-
-        if sku[0].isnumeric() and sku[1] in sku_price_map:
+        if sku_name in sku_price_map:
             total_price += checkout_compute_multibuy(
-                    sku, sku_price_map, sku_multibuy_map)
+                    sku_name, quantity, sku_price_map, sku_multibuy_map)
             continue
         return -1 # sku not present in any maps
 
@@ -63,7 +60,7 @@ def sku_split(sku: str) -> tuple[str, int]:
     return (sku_name, quantity)
 
 
-def checkout_compute_multibuy(sku: str, sku_price_map: dict, sku_multibuy_map: dict) -> int:
+def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_multibuy_map: dict) -> int:
     """Computes multibuy price when sku begins a number
 
     Provides the best price for the quantity.
@@ -74,6 +71,7 @@ def checkout_compute_multibuy(sku: str, sku_price_map: dict, sku_multibuy_map: d
     4A -> 3A + A -> 130 + 50 = 180
     """
     return int(sku[0]) * sku_price_map[sku[1]]
+
 
 
 
