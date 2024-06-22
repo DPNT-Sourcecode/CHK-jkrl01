@@ -54,6 +54,7 @@ def sku_split(sku: str) -> tuple[str, int]:
     
 
     quantity = int(quantity_matched.group())
+    print(quantity)
     sku_name = sku[quantity_matched.start() + 1:]
     return (sku_name, quantity)
 
@@ -69,4 +70,5 @@ def checkout_compute_multibuy(sku: str, sku_price_map: dict, sku_multibuy_map: d
     4A -> 3A + A -> 130 + 50 = 180
     """
     return int(sku[0]) * sku_price_map[sku[1]]
+
 

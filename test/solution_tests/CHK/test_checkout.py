@@ -35,3 +35,13 @@ class TestCheckout():
 
     def test_checkout__illegal_1(self):
         assert checkout_solution.checkout('this_is_illegal') == -1
+
+    def test_sku_split__no_quantity(self):
+        assert checkout_solution.sku_split('A') == ('A', 1)
+
+    def test_sku_split__single_digit_quantity(self):
+        assert checkout_solution.sku_split('2A') == ('A', 2)
+
+    def test_sku_split__double_digit_quantity(self):
+        assert checkout_solution.sku_split('10A') == ('A', 10)
+
