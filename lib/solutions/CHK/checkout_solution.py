@@ -91,10 +91,3 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     total_singleton_price = price * remainder
 
     return total_singleton_price + total_multi_buy_price 
-
-
-
-
-
-
-
