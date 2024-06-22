@@ -29,6 +29,11 @@ def checkout(skus: str) -> int:
         if sku in sku_multibuy_map:
             total_price += sku_multibuy_map[sku]
             continue
+
+        sku_name, quantity = sku_split(sku)
+        if not sku_name in sku_price_map:
+            return -1
+
         if sku[0].isnumeric() and sku[1] in sku_price_map:
             total_price += checkout_compute_multibuy(
                     sku, sku_price_map, sku_multibuy_map)
@@ -69,6 +74,7 @@ def checkout_compute_multibuy(sku: str, sku_price_map: dict, sku_multibuy_map: d
     4A -> 3A + A -> 130 + 50 = 180
     """
     return int(sku[0]) * sku_price_map[sku[1]]
+
 
 
 
