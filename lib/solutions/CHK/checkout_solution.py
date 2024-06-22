@@ -19,6 +19,7 @@ def checkout(skus: str) -> int:
             }
 
     # exact data inputs are ambiguous
+    # assume only one multibuy available for each SKU
     sku_multibuy_map = {
             'A': (3, 130),
             'B': (2, 45),
@@ -35,6 +36,7 @@ def checkout(skus: str) -> int:
             total_price += sku_price_map[sku]
             continue
 
+        # handle multi-buy syntax
         sku_name, quantity = sku_split(sku)
         if sku_name in sku_price_map:
             total_price += checkout_compute_multibuy(
@@ -78,10 +80,10 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     """
     price = sku_price_map[sku]
     if sku in sku_multibuy_map:
-        multibuy_quant, discounted_price = sku_multibuy_map[sku]
-        number_of_multibuys = quantity // multibuy_quant
+        multibuy_size, discounted_price = sku_multibuy_map[sku]
+        number_of_multibuys = quantity // multibuy_size
         total_multi_buy_price = (number_of_multibuys * discounted_price)
-        remainder = quantity % multibuy_quant
+        remainder = quantity % multibuy_size
     else:
         remainder = quantity
         total_multi_buy_price = 0
@@ -89,6 +91,7 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     total_singleton_price = price * remainder
 
     return total_singleton_price + total_multi_buy_price 
+
 
 
 
