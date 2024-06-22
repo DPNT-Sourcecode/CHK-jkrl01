@@ -31,5 +31,3 @@ class TestHello():
 
     def test_hello__clientspec_2(self):
         assert hello_solution.hello("Mr. X") == 'Hello, Mr. X!'
-
-
