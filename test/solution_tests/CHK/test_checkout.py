@@ -29,9 +29,9 @@ class TestCheckout():
         Not defined in client specification"""
         assert checkout_solution.checkout('A,B') == 80
 
-    # def test_checkout__many_sku_multibuy(self):
-    #     """Multibuy syntax is ambiguous. Assume <number><sku>"""
-    #     assert checkout_solution.checkout('3A,B') == 160
+    def test_checkout__many_sku_multibuy(self):
+        """Multibuy syntax is ambiguous. Assume <number><sku>"""
+        assert checkout_solution.checkout('3A,B') == 160
 
     def test_checkout__illegal_1(self):
         assert checkout_solution.checkout('this_is_illegal') == -1
@@ -50,4 +50,5 @@ class TestCheckout():
 
     def test_sku_split__multichar_sku(self):
         assert checkout_solution.sku_split('100ABDF') == ('ABDF', 100)
+
 
