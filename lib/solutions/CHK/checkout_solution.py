@@ -29,7 +29,11 @@ def checkout(skus: str) -> int:
         if sku in sku_multibuy_map:
             total_price += sku_multibuy_map[sku]
             continue
+        if sku[0].isnumeric() and sku[1] in sku_price_map:
+            total_price += int(sku[0]) * sku_price_map[sku[1]]
+            continue
         return -1 # sku not present in any maps
 
     return total_price
+
 
