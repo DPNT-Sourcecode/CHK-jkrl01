@@ -17,6 +17,12 @@ class TestCheckout():
         """
         assert checkout_solution.checkout('4A') == 180
 
+    def test_checkout__single_sku_multibuy_double_digit_mixed(self):
+        """Multi-buy offer can apply to a subset of quanitities
+        10A -> 3*3A + A -> 390 + 50 = 440
+        """
+        assert checkout_solution.checkout('10A') == 440
+
     def test_checkout__many_sku(self):
         """Assume Delimiter is comma.
 
@@ -29,5 +35,6 @@ class TestCheckout():
 
     def test_checkout__illegal_1(self):
         assert checkout_solution.checkout('this_is_illegal') == -1
+
 
 
