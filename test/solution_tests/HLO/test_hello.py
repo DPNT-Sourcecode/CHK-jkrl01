@@ -2,13 +2,17 @@ from lib.solutions.HLO import hello_solution
 
 
 class TestHello():
-    def test_hello(self):
+    def test_hello__no_capitalise(self):
+        """Function shall not capitalise name
+
+        Dependent on client specification.
+        """
         assert hello_solution.hello('danny') == 'Hello, danny!'
 
     def test_hello__zero_length(self):
         """Function shall except zero-length names
 
-        This is needs to be confirmed with Client Specification.
+        This is needs to be confirmed/detailed in Client Specification.
         """
         assert hello_solution.hello('') == 'Hello, !'
 
@@ -16,6 +20,7 @@ class TestHello():
         """This is a type error, but demenstrates type coercion should
         untype-checked code is run.
         """
+        # pyright: reportArgumentType=false
         assert hello_solution.hello(5) == 'Hello, 5!'
 
     def test_hello__fullname(self):
@@ -26,3 +31,4 @@ class TestHello():
 
     def test_hello__clientspec_2(self):
         assert hello_solution.hello("Mr. X") == 'Hello, Mr. X!'
+
