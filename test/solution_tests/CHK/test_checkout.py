@@ -45,3 +45,10 @@ class TestCheckout():
     def test_sku_split__double_digit_quantity(self):
         assert checkout_solution.sku_split('10A') == ('A', 10)
 
+    def test_sku_split__triple_digit_quantity(self):
+        assert checkout_solution.sku_split('100A') == ('A', 100)
+
+    def test_sku_split__multichar_sku(self):
+        assert checkout_solution.sku_split('100ABDF') == ('ABDF', 100)
+
+
