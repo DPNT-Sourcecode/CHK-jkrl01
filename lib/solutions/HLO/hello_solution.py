@@ -3,12 +3,13 @@
 # noinspection PyUnusedLocal
 # friend_name = unicode string
 def hello(friend_name: str) -> str:
-    """Takes a string and returns a string 'Hello, World!'
+    """Takes a string and returns a string 'Hello, {friend_name}!'
 
-    friend_name  argument is ignored.
+    Name is not capitalised, and returned as-is.
 
     """
-    return f'Hello, World!'
+    return f'Hello, {friend_name}!'
+
 
 
 
