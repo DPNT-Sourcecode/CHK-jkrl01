@@ -173,3 +173,10 @@ class TestCheckout():
     def test_checkout__group_multibuy_5(self):
         assert checkout_solution.checkout('STXYZ') == 82
 
+    def test_checkout__group_multibuy_mixed(self):
+        """Get-some-free, group multibuy and standard multibuy discounts
+        applied
+        """
+        assert checkout_solution.checkout('SRTRAARAXYZQ') == 362
+
+
