@@ -147,7 +147,7 @@ class TestCheckout():
         assert checkout_solution.checkout('QQQRRR') == 210
 
     def test_checkout__one_of_each(self):
-        assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 853
+        assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 837
 
     def test_checkout__group_multibuy_1(self):
         assert checkout_solution.checkout('SSS') == 45
@@ -169,3 +169,4 @@ class TestCheckout():
         customer the best bargain
         """
         assert checkout_solution.checkout('ZZZXX') == 79
+
