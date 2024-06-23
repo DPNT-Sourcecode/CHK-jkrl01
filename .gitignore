@@ -1,3 +1,12 @@
+/config
+flake.*
+*.md
+*.sh
+LICENSE
+language.tdl
+/lib
+!/lib/solutions
+
 # ~~~~~~~~~ Global ~~~~~~~~~
 
 # Ignore all dot folders
