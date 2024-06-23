@@ -116,7 +116,7 @@ class TestCheckout():
         assert checkout_solution.checkout('UUUU') == 120
 
     def test_checkout__multi_buy_V(self):
-        assert checkout_solution.checkout('VVVVVV') == 270
+        assert checkout_solution.checkout('VVVVV') == 220
 
     def test_checkout__multi_buy_N_1(self):
         assert checkout_solution.checkout('NNN') == 120
@@ -141,4 +141,5 @@ class TestCheckout():
 
     def test_checkout__one_of_each(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 965
+
 
