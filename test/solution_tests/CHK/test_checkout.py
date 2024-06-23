@@ -84,3 +84,13 @@ class TestCheckout():
     def test_checkout__get_some_free_three_B(self):
         assert checkout_solution.checkout('EEBBB') == 125
 
+    def test_checkout__get_some_free_one_F(self):
+        assert checkout_solution.checkout('F') == 10
+
+    def test_checkout__get_some_free_two_F(self):
+        assert checkout_solution.checkout('FF') == 20
+
+    def test_checkout__get_some_free_three_F(self):
+        assert checkout_solution.checkout('FFF') == 20
+
+
