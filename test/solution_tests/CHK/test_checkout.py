@@ -147,4 +147,34 @@ class TestCheckout():
         assert checkout_solution.checkout('QQQRRR') == 210
 
     def test_checkout__one_of_each(self):
-        assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 853
+        assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 837
+
+    def test_checkout__group_multibuy_1(self):
+        assert checkout_solution.checkout('SSS') == 45
+
+    def test_checkout__group_multibuy_2(self):
+        """Choose the most expensive items for multibuy first, to give the
+        customer the best bargain
+        """
+        assert checkout_solution.checkout('ZSSS') == 65
+
+    def test_checkout__group_multibuy_3(self):
+        """Choose the most expensive items for multibuy first, to give the
+        customer the best bargain
+        """
+        assert checkout_solution.checkout('ZZZXXX') == 90
+
+    def test_checkout__group_multibuy_4(self):
+        """Choose the most expensive items for multibuy first, to give the
+        customer the best bargain
+        """
+        assert checkout_solution.checkout('ZZZXX') == 79
+
+    def test_checkout__group_multibuy_5(self):
+        assert checkout_solution.checkout('STXYZ') == 82
+
+    def test_checkout__group_multibuy_mixed(self):
+        """Get-some-free, group multibuy and standard multibuy discounts
+        applied
+        """
+        assert checkout_solution.checkout('SRTRAARAXYZQ') == 362
