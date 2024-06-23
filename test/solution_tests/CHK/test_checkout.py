@@ -169,4 +169,3 @@ class TestCheckout():
         customer the best bargain
         """
         assert checkout_solution.checkout('ZZZXX') == 79
-
