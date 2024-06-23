@@ -67,3 +67,9 @@ class TestCheckout():
     def test_checkout__client_spec_4(self):
         assert checkout_solution.checkout('ABCDABCD') == 215
 
+    def test_checkout__get_some_free(self):
+        assert checkout_solution.checkout('EEB') == 40
+
+    def test_checkout__get_some_free_no_B(self):
+        assert checkout_solution.checkout('EE') == 40
+
