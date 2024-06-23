@@ -156,4 +156,17 @@ class TestCheckout():
         """Choose the most expensive items for multibuy first, to give the
         customer the best bargain
         """
-        assert checkout_solution.checkout('ZSSS') == 45
+        assert checkout_solution.checkout('ZSSS') == 65
+
+    def test_checkout__group_multibuy_3(self):
+        """Choose the most expensive items for multibuy first, to give the
+        customer the best bargain
+        """
+        assert checkout_solution.checkout('ZZZXXX') == 90
+
+    def test_checkout__group_multibuy_4(self):
+        """Choose the most expensive items for multibuy first, to give the
+        customer the best bargain
+        """
+        assert checkout_solution.checkout('ZZZXX') == 79
+
