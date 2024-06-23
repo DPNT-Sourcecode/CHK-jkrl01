@@ -139,7 +139,12 @@ class TestCheckout():
     def test_checkout__multi_buy_H(self):
         assert checkout_solution.checkout('HHHHHHHHHHHHHHHH') == 135
 
+    def test_checkout__multi_buy_R_get_some_free_Q(self):
+        """3R get one Q free takes precedence over 3Q for 80 discount"""
+        assert checkout_solution.checkout('QQQRRR') == 210
+
     def test_checkout__one_of_each(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 965
+
 
 
