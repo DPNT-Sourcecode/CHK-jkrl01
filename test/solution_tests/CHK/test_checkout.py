@@ -189,9 +189,6 @@ class TestCheckout():
         assert checkout_solution.checkout('KKKK') == 240
 
 
-#  - {"method":"checkout","params":["KK"],"id":"CHK_R5_096"}, expected: 120, got: 150
-#  - {"method":"checkout","params":["KKK"],"id":"CHK_R5_097"}, expected: 190, got: 220
-#  - {"method":"checkout","params":["KKKK"],"id":"CHK_R5_098"}, expected: 240, got: 300
 
 
 
