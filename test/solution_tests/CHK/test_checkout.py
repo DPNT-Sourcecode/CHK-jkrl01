@@ -73,3 +73,12 @@ class TestCheckout():
     def test_checkout__get_some_free_no_B(self):
         assert checkout_solution.checkout('EE') == 40
 
+    def test_checkout__get_some_free_two_B(self):
+        """Get one free gives a larger discount so that has precedence over
+        multi-buy discount"""
+        assert checkout_solution.checkout('EEBB') == 70
+
+    def test_checkout__get_some_free_three_B(self):
+        assert checkout_solution.checkout('EEBBB') == 85
+
+
