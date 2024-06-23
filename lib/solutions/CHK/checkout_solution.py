@@ -23,6 +23,7 @@ def checkout(skus: str) -> int:
             'B': 30,
             'C': 20,
             'D': 15,
+            'E': 40,
             }
 
     # exact data inputs are ambiguous
@@ -34,10 +35,16 @@ def checkout(skus: str) -> int:
             'B': [(2, 45)],
             }
 
-    total_price = 0
+    sku_get_some_free_map: dict[str, tuple[int, str, int]] = {
+            'E': (2, 'B', 1)
+            }
 
+    total_price = 0
     sku_list = list(skus)
     sku_counts = collections.Counter(sku_list)
+
+    # get some free discounts takes precedence
+    sku_counts = checkout_get_some_free(sku_counts, sku_get_some_free_map)
 
     for sku, quantity in sku_counts.items():
         if not sku in sku_price_map:
@@ -53,9 +60,7 @@ def checkout_compute_sku_cost(
     sku_price_map: dict, 
     sku_multibuy_map: dict[str, list]
     ) -> int:
-    """Computes multibuy price when sku begins a number
-
-    Provides the best price for the quantity.
+    """Computes the total cost of an SKU, which includes any multibuy discounts
 
     Example:
     --------
@@ -81,7 +86,8 @@ def checkout_compute_multibuy_price(
     multibuy_offers: list[tuple[int, int]]
     ) -> tuple[int, int]:
     """Given a quantity and the multibuy offers list, returns maximum multibuy
-    price and the remainder that will be charged at full price.
+    discount possible and the remainder is returned which will be charged at
+    full price.
 
     Note:
         multibuy_offers list must be sorted in descending order with the first
@@ -96,3 +102,19 @@ def checkout_compute_multibuy_price(
 
     return total_multi_buy_price, remainder
 
+def checkout_get_some_free(
+    sku_counts: dict[str, int],
+    sku_get_some_free_map: dict[str, tuple[int, str, int]]
+    ) -> dict[str, int]:
+
+    for sku in sku_get_some_free_map:
+        quantity, free_sku, free_quantity = sku_get_some_free_map[sku]
+        if not sku in sku_counts:
+            continue
+        if sku_counts[sku] >= quantity:
+            total_free_quantity = free_quantity * (sku_counts[sku] // quantity)
+            if free_sku in sku_counts:
+                remaining = sku_counts[free_sku] - total_free_quantity
+                sku_counts[free_sku] = remaining if remaining > 0 else 0
+
+    return sku_counts

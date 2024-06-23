@@ -67,3 +67,19 @@ class TestCheckout():
     def test_checkout__client_spec_4(self):
         assert checkout_solution.checkout('ABCDABCD') == 215
 
+    def test_checkout__get_some_free(self):
+        assert checkout_solution.checkout('EEB') == 80
+
+    def test_checkout__get_some_free_no_B(self):
+        """If buyer does not include a B the discount is technically applied
+        but not taken advanage of.
+        """
+        assert checkout_solution.checkout('EE') == 80
+
+    def test_checkout__get_some_free_two_B(self):
+        """Get one free gives a larger discount so that has precedence over
+        multi-buy discount"""
+        assert checkout_solution.checkout('EEBB') == 110
+
+    def test_checkout__get_some_free_three_B(self):
+        assert checkout_solution.checkout('EEBBB') == 125
