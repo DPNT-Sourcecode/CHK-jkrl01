@@ -19,11 +19,23 @@ class TestCheckout():
         """
         assert checkout_solution.checkout('AAAA') == 180
 
+    def test_checkout__single_sku_multibuy_1(self):
+        """Multi-buy offer can apply to a subset of quanitities
+        AAAAA -> 200 = 200
+        """
+        assert checkout_solution.checkout('AAAAA') == 200
+
+    def test_checkout__single_sku_multibuy_2(self):
+        """Multi-buy offer can apply to a subset of quanitities
+        AAAAAAAAA -> AAAAA + AAA + A -> 200 + 130 + 50 = 380
+        """
+        assert checkout_solution.checkout('AAAAAAAAA') == 380
+
     def test_checkout__single_sku_multibuy_double_digit_mixed(self):
         """Multi-buy offer can apply to a subset of quanitities
-        10A -> 3*AAA + A -> 390 + 50 = 440
+        10A -> 2*AAAAA -> 400
         """
-        assert checkout_solution.checkout('AAAAAAAAAA') == 440
+        assert checkout_solution.checkout('AAAAAAAAAA') == 400
 
     def test_checkout__many_sku(self):
         assert checkout_solution.checkout('AB') == 80
