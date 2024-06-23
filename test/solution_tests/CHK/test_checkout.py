@@ -68,15 +68,16 @@ class TestCheckout():
         assert checkout_solution.checkout('ABCDABCD') == 215
 
     def test_checkout__get_some_free(self):
-        assert checkout_solution.checkout('EEB') == 40
+        assert checkout_solution.checkout('EEB') == 80
 
     def test_checkout__get_some_free_no_B(self):
-        assert checkout_solution.checkout('EE') == 40
+        assert checkout_solution.checkout('EE') == 80
 
     def test_checkout__get_some_free_two_B(self):
         """Get one free gives a larger discount so that has precedence over
         multi-buy discount"""
-        assert checkout_solution.checkout('EEBB') == 70
+        assert checkout_solution.checkout('EEBB') == 110
 
     def test_checkout__get_some_free_three_B(self):
-        assert checkout_solution.checkout('EEBBB') == 85
+        assert checkout_solution.checkout('EEBBB') == 125
+
