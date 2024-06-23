@@ -80,4 +80,3 @@ class TestCheckout():
 
     def test_checkout__get_some_free_three_B(self):
         assert checkout_solution.checkout('EEBBB') == 125
-
