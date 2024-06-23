@@ -24,6 +24,7 @@ def checkout(skus: str) -> int:
             'C': 20,
             'D': 15,
             'E': 40,
+            'F': 10,
             }
 
     # exact data inputs are ambiguous
@@ -36,7 +37,8 @@ def checkout(skus: str) -> int:
             }
 
     sku_get_some_free_map: dict[str, tuple[int, str, int]] = {
-            'E': (2, 'B', 1)
+            'E': (2, 'B', 1),
+            'F': (3, 'F', 1) # buy 2Fs get another free, if you have 3Fs
             }
 
     total_price = 0

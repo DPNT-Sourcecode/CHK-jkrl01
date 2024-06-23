@@ -83,3 +83,31 @@ class TestCheckout():
 
     def test_checkout__get_some_free_three_B(self):
         assert checkout_solution.checkout('EEBBB') == 125
+
+    def test_checkout__get_some_free_one_F(self):
+        assert checkout_solution.checkout('F') == 10
+
+    def test_checkout__get_some_free_two_F(self):
+        """Discount is not applied as it triggers at 3Fs"""
+        assert checkout_solution.checkout('FF') == 20
+
+    def test_checkout__get_some_free_three_F(self):
+        """buy 2Fs and get another F free applied as 3Fs present"""
+        assert checkout_solution.checkout('FFF') == 20
+
+    def test_checkout__get_some_free_three_F_illegal_1(self):
+        """Get-some-free discount is applied but rejected in later total cost
+        evaluation"""
+        assert checkout_solution.checkout('FFFx') == -1
+
+    def test_checkout__get_some_free_three_F_illegal_2(self):
+        assert checkout_solution.checkout('FFxF') == -1
+
+    def test_checkout__get_some_free_three_F_illegal_3(self):
+        assert checkout_solution.checkout('FxFF') == -1
+
+    def test_checkout__get_some_free_three_F_illegal_4(self):
+        assert checkout_solution.checkout('xFFF') == -1
+
+    def test_checkout__get_some_free_four_F(self):
+        assert checkout_solution.checkout('FFFF') == 30
