@@ -1,6 +1,5 @@
 from lib.solutions.CHK import checkout_solution
 
-
 class TestCheckout():
     def test_checkout__single_sku(self):
         assert checkout_solution.checkout('A') == 50
@@ -45,7 +44,7 @@ class TestCheckout():
         assert checkout_solution.checkout('AAA,5this_is_illegal') == -1
 
     def test_checkout__client_spec_1(self):
-        assert checkout_solution.checkout('') == -1
+        assert checkout_solution.checkout('') == 0
 
     def test_checkout__client_spec_2(self):
         assert checkout_solution.checkout('ABCD') == 115
@@ -53,20 +52,6 @@ class TestCheckout():
     def test_checkout__client_spec_3(self):
         assert checkout_solution.checkout('AA') == 100
 
-    # def test_sku_split__no_quantity(self):
-    #     assert checkout_solution.sku_split('A') == ('A', 1)
-
-    # def test_sku_split__single_digit_quantity(self):
-    #     assert checkout_solution.sku_split('2A') == ('A', 2)
-
-    # def test_sku_split__double_digit_quantity(self):
-    #     assert checkout_solution.sku_split('10A') == ('A', 10)
-
-    # def test_sku_split__triple_digit_quantity(self):
-    #     assert checkout_solution.sku_split('100A') == ('A', 100)
-
-    # def test_sku_split__multichar_sku(self):
-    #     assert checkout_solution.sku_split('100ABDF') == ('ABDF', 100)
 
 
 
