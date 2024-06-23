@@ -188,7 +188,3 @@ class TestCheckout():
     def test_checkout__client_spec_7(self):
         assert checkout_solution.checkout('KKKK') == 240
 
-
-
-
-
