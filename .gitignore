@@ -1,11 +1,13 @@
+# ~~~~~~~~~ local tracking of my changes ~~~~~~~~~
 /config
 flake.*
 *.md
 *.sh
 LICENSE
 language.tdl
-/lib
+/lib/*
 !/lib/solutions
+version.txt
 
 # ~~~~~~~~~ Global ~~~~~~~~~
 
@@ -58,4 +60,5 @@ coverage.tdl
 .coverage
 jre/
 record/
+
 
