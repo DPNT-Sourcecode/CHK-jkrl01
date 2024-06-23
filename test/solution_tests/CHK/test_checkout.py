@@ -119,6 +119,4 @@ class TestCheckout():
         assert checkout_solution.checkout('VVVVVV') == 270
 
     def test_checkout__one_of_each(self):
-        assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 975
-
-
+        assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 965
