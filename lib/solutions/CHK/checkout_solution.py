@@ -9,6 +9,9 @@ Discount Precedence:
     - buy M get N free has precedence over multibuy deals.
     - grouped multibuy deals take precedence over multibuy deals.
     - items considered to be free will not count towards the multibuy deal.
+
+Constraints:
+    - groups in group multibuy deals shall not overall
 """
 
 import collections
@@ -23,6 +26,14 @@ def checkout(skus: str) -> int:
     checkout('AAAA') --> 180
     checkout('AAAB') --> 160
     """
+
+    # NOTE
+    # I could have organised the various discounts into classes, but this
+    # approach leds to less code overall which is important when iterating on
+    # the client's needs. A more class-based approach would eventually improve
+    # the extensibility once the foundational commercial needs have been
+    # understood.
+
     sku_price_map = {
             'A': 50,
             'B': 30,
@@ -178,6 +189,7 @@ def checkout_compute_grouped_sku_cost(
     total_discounted_price = 0
     for group, deal in sku_group_multibuy_map.items():
         multibuy_size, discounted_price = deal
+        # a sorted price list can be cached, here computed repeatedly
         group_price_list = [(s,p) for s,p in sku_price_map.items() if s in group]
         group_price_list.sort(key=lambda g: g[1], reverse=True)
         priciest_group_list = [s[0] for s in group_price_list]
@@ -218,6 +230,8 @@ def count_priciest_group_multibuys(
                 # next priciest sku item found
                 if sku in next_sku_counts:
                     next_sku_counts[sku] -= 1
+                    # incrementing over using n from range clarifies the
+                    # intention better
                     multibuy_picked += 1
                     # ensure sku is removed from sku_count if exhausted
                     if next_sku_counts[sku] == 0:
