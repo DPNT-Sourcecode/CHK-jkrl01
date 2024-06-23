@@ -106,8 +106,12 @@ class TestCheckout():
     def test_checkout__get_some_free_three_F_illegal_3(self):
         assert checkout_solution.checkout('FxFF') == -1
 
+    def test_checkout__get_some_free_three_F_illegal_4(self):
+        assert checkout_solution.checkout('xFFF') == -1
+
     def test_checkout__get_some_free_four_F(self):
         assert checkout_solution.checkout('FFFF') == 30
+
 
 
 
