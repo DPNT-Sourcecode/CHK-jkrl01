@@ -111,7 +111,3 @@ class TestCheckout():
 
     def test_checkout__get_some_free_four_F(self):
         assert checkout_solution.checkout('FFFF') == 30
-
-
-
-
