@@ -33,9 +33,9 @@ class TestCheckout():
 
     def test_checkout__single_sku_multibuy_double_digit_mixed(self):
         """Multi-buy offer can apply to a subset of quanitities
-        10A -> 3*AAA + A -> 390 + 50 = 440
+        10A -> 2*AAAAA -> 400
         """
-        assert checkout_solution.checkout('AAAAAAAAAA') == 440
+        assert checkout_solution.checkout('AAAAAAAAAA') == 400
 
     def test_checkout__many_sku(self):
         assert checkout_solution.checkout('AB') == 80
@@ -66,6 +66,7 @@ class TestCheckout():
 
     def test_checkout__client_spec_4(self):
         assert checkout_solution.checkout('ABCDABCD') == 215
+
 
 
 
