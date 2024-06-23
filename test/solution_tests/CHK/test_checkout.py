@@ -10,49 +10,43 @@ class TestCheckout():
         assert checkout_solution.checkout('A') == 50
 
     def test_checkout__single_sku_multibuy_offer(self):
-        assert checkout_solution.checkout('3A') == 130
+        assert checkout_solution.checkout('AAA') == 130
 
     def test_checkout__single_sku_multibuy_nooffer_1(self):
-        assert checkout_solution.checkout('2A') == 100
+        assert checkout_solution.checkout('AA') == 100
 
     def test_checkout__single_sku_multibuy_nooffer_2(self):
-        assert checkout_solution.checkout('2C') == 40
+        assert checkout_solution.checkout('CC') == 40
 
     def test_checkout__single_sku_multibuy_mixed(self):
         """Multi-buy offer can apply to a subset of quanitities
-        4A -> 3A + A -> 130 + 50 = 180
+        AAAA -> AAA + A -> 130 + 50 = 180
         """
-        assert checkout_solution.checkout('4A') == 180
+        assert checkout_solution.checkout('AAAA') == 180
 
     def test_checkout__single_sku_multibuy_double_digit_mixed(self):
         """Multi-buy offer can apply to a subset of quanitities
-        10A -> 3*3A + A -> 390 + 50 = 440
+        10A -> 3*AAA + A -> 390 + 50 = 440
         """
-        assert checkout_solution.checkout('10A') == 440
+        assert checkout_solution.checkout('AAAAAAAAAA') == 440
 
     def test_checkout__many_sku(self):
-        """Assume Delimiter is comma.
-
-        Not defined in client specification"""
-        assert checkout_solution.checkout('A,B') == 80
+        assert checkout_solution.checkout('AB') == 80
 
     def test_checkout__many_sku_multibuy_1(self):
-        """Multibuy syntax is ambiguous. Assume <number><sku>"""
-        assert checkout_solution.checkout('3A,B') == 160
+        assert checkout_solution.checkout('AAAB') == 160
 
     def test_checkout__many_sku_multibuy_2(self):
-        """Multibuy syntax is ambiguous. Assume <number><sku>"""
-        assert checkout_solution.checkout('3A,B,2C,D') == 215
+        assert checkout_solution.checkout('AAABCCD') == 215
 
     def test_checkout__has_rough_whitespace(self):
-        """Multibuy syntax is ambiguous. Assume <number><sku>"""
-        assert checkout_solution.checkout('3A, B, 2C, D') == 215
+        assert checkout_solution.checkout('AAABCCD') == 215
 
     def test_checkout__illegal_1(self):
         assert checkout_solution.checkout('this_is_illegal') == -1
 
     def test_checkout__illegal_2(self):
-        assert checkout_solution.checkout('3A,5this_is_illegal') == -1
+        assert checkout_solution.checkout('AAA,5this_is_illegal') == -1
 
     # def test_sku_split__no_quantity(self):
     #     assert checkout_solution.sku_split('A') == ('A', 1)
@@ -68,4 +62,5 @@ class TestCheckout():
 
     # def test_sku_split__multichar_sku(self):
     #     assert checkout_solution.sku_split('100ABDF') == ('ABDF', 100)
+
 

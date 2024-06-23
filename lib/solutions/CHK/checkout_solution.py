@@ -3,8 +3,7 @@ import re
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus: str) -> int:
-    """Takes a string of SKUs delimited by comma (,). Multibuys are prefixed
-    with a number.
+    """Takes a string of SKUs, which are single capital letter characters.
 
     examples
     --------
@@ -91,3 +90,4 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     total_singleton_price = price * remainder
 
     return total_singleton_price + total_multi_buy_price 
+
