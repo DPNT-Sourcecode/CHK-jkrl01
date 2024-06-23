@@ -1,4 +1,5 @@
 import re
+import collections
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -7,8 +8,8 @@ def checkout(skus: str) -> int:
 
     examples
     --------
-    checkout('4A') --> 180
-    checkout('3A, B') --> 160
+    checkout('AAAA') --> 180
+    checkout('AAAB') --> 160
     """
     sku_price_map = {
             'A': 50,
@@ -26,9 +27,8 @@ def checkout(skus: str) -> int:
 
     total_price = 0
 
-    sku_list = skus.split(',') # assume comma delimiter
-    sku_list = [sku.strip() for sku in sku_list] # remove whitespace
-
+    sku_list = list(skus)
+    sku_counts = colletions.Counter(sku_list)
 
     for sku in sku_list:
         if sku in sku_price_map:
@@ -90,4 +90,5 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     total_singleton_price = price * remainder
 
     return total_singleton_price + total_multi_buy_price 
+
 

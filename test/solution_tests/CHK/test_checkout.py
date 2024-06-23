@@ -37,9 +37,9 @@ class TestCheckout():
         assert checkout_solution.checkout('AAAB') == 160
 
     def test_checkout__many_sku_multibuy_2(self):
-        assert checkout_solution.checkout('AAABCCD') == 215
+        assert checkout_solution.checkout('AABA') == 160
 
-    def test_checkout__has_rough_whitespace(self):
+    def test_checkout__many_sku_multibuy_3(self):
         assert checkout_solution.checkout('AAABCCD') == 215
 
     def test_checkout__illegal_1(self):
@@ -62,5 +62,6 @@ class TestCheckout():
 
     # def test_sku_split__multichar_sku(self):
     #     assert checkout_solution.sku_split('100ABDF') == ('ABDF', 100)
+
 
 
