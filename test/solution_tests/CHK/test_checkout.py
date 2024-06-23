@@ -111,3 +111,40 @@ class TestCheckout():
 
     def test_checkout__get_some_free_four_F(self):
         assert checkout_solution.checkout('FFFF') == 30
+
+    def test_checkout__get_some_free_four_U(self):
+        assert checkout_solution.checkout('UUUU') == 120
+
+    def test_checkout__multi_buy_V(self):
+        assert checkout_solution.checkout('VVVVV') == 220
+
+    def test_checkout__multi_buy_N_1(self):
+        assert checkout_solution.checkout('NNN') == 120
+
+    def test_checkout__multi_buy_N_2(self):
+        assert checkout_solution.checkout('NNNM') == 120
+
+    def test_checkout__multi_buy_N_3(self):
+        assert checkout_solution.checkout('NNNMM') == 135
+
+    def test_checkout__multi_buy_P(self):
+        assert checkout_solution.checkout('PPPPP') == 200
+
+    def test_checkout__multi_buy_P_one_too_low(self):
+        assert checkout_solution.checkout('PPPP') == 200
+
+    def test_checkout__multi_buy_P_one_too_high(self):
+        assert checkout_solution.checkout('PPPPPP') == 250
+
+    def test_checkout__multi_buy_H(self):
+        assert checkout_solution.checkout('HHHHHHHHHHHHHHHH') == 135
+
+    def test_checkout__multi_buy_R_get_some_free_Q(self):
+        """3R get one Q free takes precedence over 3Q for 80 discount
+        The third Q is taken off and not considered as part of the multibuy
+        deal
+        """
+        assert checkout_solution.checkout('QQQRRR') == 210
+
+    def test_checkout__one_of_each(self):
+        assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 965

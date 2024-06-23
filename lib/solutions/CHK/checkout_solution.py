@@ -4,6 +4,10 @@ SKU Specification:
     - Single Capital Letter
     - Multiple quantities expressed as repetitions
     - 'Basket' of SKUs is a single string of SKU characters
+
+Discount Precedence:
+    - buy M get N free has precedence over multibuy deal.
+    - items considered to be free will not count towards the multibuy deal.
 """
 
 import collections
@@ -25,6 +29,26 @@ def checkout(skus: str) -> int:
             'D': 15,
             'E': 40,
             'F': 10,
+            'G': 20,
+            'H': 10,
+            'I': 35,
+            'J': 60,
+            'K': 80,
+            'L': 90,
+            'M': 15,
+            'N': 40,
+            'O': 10,
+            'P': 50,
+            'Q': 30,
+            'R': 50,
+            'S': 30,
+            'T': 20,
+            'U': 40,
+            'V': 50,
+            'W': 20,
+            'X': 90,
+            'Y': 10,
+            'Z': 50,
             }
 
     # exact data inputs are ambiguous
@@ -34,11 +58,20 @@ def checkout(skus: str) -> int:
     sku_multibuy_map = {
             'A': [(5, 200), (3, 130)],
             'B': [(2, 45)],
+            'H': [(10, 80), (5, 45)],
+            'K': [(2, 150)],
+            'P': [(5, 200)],
+            'Q': [(3, 80)],
+            'V': [(3, 130), (2, 90)],
             }
 
     sku_get_some_free_map: dict[str, tuple[int, str, int]] = {
             'E': (2, 'B', 1),
-            'F': (3, 'F', 1) # buy 2Fs get another free, if you have 3Fs
+            'F': (3, 'F', 1), # buy 2Fs get another free, if you have 3Fs
+            'N': (3, 'M', 1), 
+            'R': (3, 'Q', 1), 
+            'U': (4, 'U', 1), # ambiguous: is this deal like F? 
+                              # certainly follows the same structure.
             }
 
     total_price = 0
