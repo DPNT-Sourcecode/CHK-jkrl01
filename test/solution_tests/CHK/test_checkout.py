@@ -149,3 +149,11 @@ class TestCheckout():
     def test_checkout__one_of_each(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 853
 
+    def test_checkout__group_multibuy_1(self):
+        assert checkout_solution.checkout('SSS') == 45
+
+    def test_checkout__group_multibuy_2(self):
+        """Choose the most expensive items for multibuy first, to give the
+        customer the best bargain
+        """
+        assert checkout_solution.checkout('ZSSS') == 45
