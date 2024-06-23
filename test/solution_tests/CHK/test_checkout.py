@@ -95,11 +95,19 @@ class TestCheckout():
         """buy 2Fs and get another F free applied as 3Fs present"""
         assert checkout_solution.checkout('FFF') == 20
 
-    def test_checkout__get_some_free_three_F_invalid_1(self):
-        """buy 2Fs and get another F free applied as 3Fs present"""
-        assert checkout_solution.checkout('FFFx') == 20
+    def test_checkout__get_some_free_three_F_illegal_1(self):
+        """Get-some-free discount is applied but rejected in later total cost
+        evaluation"""
+        assert checkout_solution.checkout('FFFx') == -1
+
+    def test_checkout__get_some_free_three_F_illegal_2(self):
+        assert checkout_solution.checkout('FFxF') == -1
+
+    def test_checkout__get_some_free_three_F_illegal_3(self):
+        assert checkout_solution.checkout('FxFF') == -1
 
     def test_checkout__get_some_free_four_F(self):
         assert checkout_solution.checkout('FFFF') == 30
+
 
 
