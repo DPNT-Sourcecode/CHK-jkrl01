@@ -1,4 +1,11 @@
-import re
+"""Checkout
+
+SKU Specification:
+    - Single Capital Letter
+    - Multiple quantities expressed as repetitions
+    - 'Basket' of SKUs is a single string of SKU characters
+"""
+
 import collections
 
 # noinspection PyUnusedLocal
@@ -28,44 +35,17 @@ def checkout(skus: str) -> int:
     total_price = 0
 
     sku_list = list(skus)
-    sku_counts = colletions.Counter(sku_list)
+    sku_counts = collections.Counter(sku_list)
 
-    for sku in sku_list:
-        if sku in sku_price_map:
-            total_price += sku_price_map[sku]
-            continue
+    for sku, quantity in sku_counts.items():
+        # return early is invalid sku found
+        if not sku in sku_price_map:
+            return -1
 
-        # handle multi-buy syntax
-        sku_name, quantity = sku_split(sku)
-        if sku_name in sku_price_map:
-            total_price += checkout_compute_multibuy(
-                    sku_name, quantity, sku_price_map, sku_multibuy_map)
-            continue
-
-        return -1 # sku not present in any maps
+        total_price += checkout_compute_multibuy(
+                sku, quantity, sku_price_map, sku_multibuy_map)
 
     return total_price
-
-def sku_split(sku: str) -> tuple[str, int]:
-    """Takes a SKU string, returns a tuple of the SKU and quantity.
-
-    examples
-    --------
-    A   -> (A, 1)
-    3A  -> (A, 3)
-    30A -> (A, 30)
-    """
-
-    quantity_re = re.compile(r'^\d+')
-    quantity_matched = quantity_re.match(sku)
-    if quantity_matched is None:
-        return (sku, 1)
-    
-
-    quantity = int(quantity_matched.group())
-    sku_name = sku[quantity_matched.end():]
-    return (sku_name, quantity)
-
 
 def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_multibuy_map: dict) -> int:
     """Computes multibuy price when sku begins a number
@@ -75,7 +55,7 @@ def checkout_compute_multibuy(sku: str, quantity: int, sku_price_map: dict, sku_
     Example:
     --------
     given A costs 50, and 3A multibuy is 130.
-    4A -> 3A + A -> 130 + 50 = 180
+    AAAA -> AAA + A -> 130 + 50 = 180
     """
     price = sku_price_map[sku]
     if sku in sku_multibuy_map:
