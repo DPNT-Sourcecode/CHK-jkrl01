@@ -115,3 +115,10 @@ class TestCheckout():
     def test_checkout__get_some_free_four_U(self):
         assert checkout_solution.checkout('UUUU') == 120
 
+    def test_checkout__multi_buy_V(self):
+        assert checkout_solution.checkout('VVVVVV') == 270
+
+    def test_checkout__one_of_each(self):
+        assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 975
+
+
