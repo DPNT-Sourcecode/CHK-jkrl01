@@ -169,3 +169,7 @@ class TestCheckout():
         customer the best bargain
         """
         assert checkout_solution.checkout('ZZZXX') == 79
+
+    def test_checkout__group_multibuy_5(self):
+        assert checkout_solution.checkout('STXYZ') == 82
+
