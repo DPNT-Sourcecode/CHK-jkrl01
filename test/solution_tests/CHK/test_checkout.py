@@ -179,4 +179,19 @@ class TestCheckout():
         """
         assert checkout_solution.checkout('SRTRAARAXYZQ') == 362
 
+    def test_checkout__client_spec_5(self):
+        assert checkout_solution.checkout('KK') == 120
+
+    def test_checkout__client_spec_6(self):
+        assert checkout_solution.checkout('KKK') == 190
+
+    def test_checkout__client_spec_7(self):
+        assert checkout_solution.checkout('KKKK') == 240
+
+
+#  - {"method":"checkout","params":["KK"],"id":"CHK_R5_096"}, expected: 120, got: 150
+#  - {"method":"checkout","params":["KKK"],"id":"CHK_R5_097"}, expected: 190, got: 220
+#  - {"method":"checkout","params":["KKKK"],"id":"CHK_R5_098"}, expected: 240, got: 300
+
+
 
