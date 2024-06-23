@@ -118,5 +118,26 @@ class TestCheckout():
     def test_checkout__multi_buy_V(self):
         assert checkout_solution.checkout('VVVVVV') == 270
 
+    def test_checkout__multi_buy_N_1(self):
+        assert checkout_solution.checkout('NNN') == 120
+
+    def test_checkout__multi_buy_N_2(self):
+        assert checkout_solution.checkout('NNNM') == 120
+
+    def test_checkout__multi_buy_N_3(self):
+        assert checkout_solution.checkout('NNNMM') == 135
+
+    def test_checkout__multi_buy_P(self):
+        assert checkout_solution.checkout('PPPPP') == 200
+
+    def test_checkout__multi_buy_P_one_too_low(self):
+        assert checkout_solution.checkout('PPPP') == 200
+
+    def test_checkout__multi_buy_P_one_too_high(self):
+        assert checkout_solution.checkout('PPPPPP') == 250
+
+    def test_checkout__multi_buy_H(self):
+        assert checkout_solution.checkout('HHHHHHHHHHHHHHHH') == 1035
+
     def test_checkout__one_of_each(self):
         assert checkout_solution.checkout('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 965
