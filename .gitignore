@@ -1,13 +1,5 @@
 # ~~~~~~~~~ local tracking of my changes ~~~~~~~~~
 /config
-flake.*
-*.md
-*.sh
-LICENSE
-language.tdl
-/lib/*
-!/lib/solutions
-version.txt
 
 # ~~~~~~~~~ Global ~~~~~~~~~
 
